@@ -3,12 +3,21 @@
 # @Author William
 
 # python cv_face.py haarcascade_frontalface_default.xml
+# python cv_face.py --xml haarcascade_frontalface_default.xml
+
 import cv2
 import sys
+import argparse
 
-cascPath = sys.argv[1]
+# cmd 另一种用法
+# cascPath = sys.argv[1]
+
+parser = argparse.ArgumentParser(description = 'face')
+parser.add_argument('--xml', help = 'Path to xml file.',default='haarcascade_frontalface_default.xml')
+args = parser.parse_args()
+
 # 读取分级器文件
-faceCascade = cv2.CascadeClassifier(cascPath)
+faceCascade = cv2.CascadeClassifier(args.xml)
 
 # 打开摄像头
 video_capture = cv2.VideoCapture(0)
